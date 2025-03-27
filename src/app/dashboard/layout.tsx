@@ -66,7 +66,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
             {/* Main Content */}
             <div className="w-full min-h-screen px-4 flex items-center gap-4 bg-gray-100">
                 {/* Sidebar */}
-                <aside className="hidden md:flex flex-col justify-around gap-4 h-[84vh] w-full max-w-xs p-4 rounded-sm bg-white">
+                <aside className="hidden lg:flex flex-col justify-around gap-4 h-[84vh] w-full max-w-xs p-4 rounded-sm bg-white">
                     <ProfileSectionSidebar/>
                     {/* Sidebar Links */}
                     <div className="w-full flex flex-col gap-4">
@@ -85,7 +85,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
             </div>
 
             {/* Bottom Navigation */}
-            <nav className="md:hidden w-full max-w-md mx-auto p-4 fixed bottom-0 left-0 right-0 z-10">
+            <nav className="lg:hidden w-full max-w-md mx-auto p-4 fixed bottom-0 left-0 right-0 z-10">
                 <div className="w-full h-16 rounded-sm shadow-sm flex justify-around items-center border border-gray-100 bg-white">
                     {NAV_ITEMS.map(({ path, icon, label }) => (
                         <NavButton key={path} icon={icon} label={label} isActive={pathname === path} />
@@ -94,7 +94,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
             </nav>
 
             {/* Footer */}
-            <footer className="hidden md:block w-full h-14 p-4 fixed bottom-0 left-0 right-0 z-10 text-center bg-white">
+            <footer className="hidden lg:block w-full h-14 p-4 fixed bottom-0 left-0 right-0 z-10 text-center bg-white">
                 <span className="font-semibold">© 2025 ZERO PANEL</span>
             </footer>
         </div>
