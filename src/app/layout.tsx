@@ -20,9 +20,9 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en">                                            {/* Root HTML element with language set to English. */}
-            <body className={`${poppins.variable} antialiased`}>    {/* Applies Poppins font and antialiasing. */}
-                {children}                                          {/* Renders the children components passed to the layout. */}
+        <html lang="en">
+            <body className={`${poppins.variable} antialiased`}>
+                {children}
             </body>
         </html>
     );
