@@ -8,8 +8,14 @@ Key Features:
 3. Wraps the application content (children) within an HTML structure with the language set to English.
 */
 
+"use client";
 import { Poppins } from "next/font/google"; // Import the Poppins font.
 import "./globals.css";                     // Import global CSS styles.
+import "../utils/disable-console.ts"
+
+import { Provider } from 'react-redux';
+import { store, persistor } from "@/store/index"
+import { PersistGate } from 'redux-persist/integration/react'
 
 const poppins = Poppins({
     subsets: ['latin'],                                                         // Character subsets to include.
@@ -22,7 +28,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en">
             <body className={`${poppins.variable} antialiased`}>
-                {children}
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+
+                        {children}
+                    </PersistGate>
+                </Provider>
             </body>
         </html>
     );

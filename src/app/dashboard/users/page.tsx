@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 
+import Protected from "@/components/Protected";
 import Input from "@/ui/Input";
 import Button from "@/ui/Button";
 
@@ -124,50 +125,52 @@ export default function Page() {
     // Main return block rendering the user management page.
     return (
         <>
-            <div>
-                {/* Page title */}
-                <h1 className="text-2xl font-semibold capitalize">user management</h1>
-                <p>This is user management</p>
-            </div>
-            <div className="w-full p-4 max-h-[84vh] flex flex-col gap-4 bg-white">
-                {/* Search bar and create button */}
-                <div className="w-full flex justify-between items-center gap-4">
-                    <div className="flex items-center gap-2">
-                        <input type="search" className="w-fit p-1.5 border border-gray-300 rounded-sm outline-none" />
-                        <button className="p-2 rounded-sm flex items-center gap-1.5 hover:cursor-pointer bg-black text-white">
-                            <IoSearch className="w-5 h-5" />
+            <Protected role={"admin"}>
+                <div>
+                    {/* Page title */}
+                    <h1 className="text-2xl font-semibold capitalize">user management</h1>
+                    <p>This is user management</p>
+                </div>
+                <div className="w-full p-4 max-h-[84vh] flex flex-col gap-4 bg-white">
+                    {/* Search bar and create button */}
+                    <div className="w-full flex justify-between items-center gap-4">
+                        <div className="flex items-center gap-2">
+                            <input type="search" className="w-fit p-1.5 border border-gray-300 rounded-sm outline-none" />
+                            <button className="p-2 rounded-sm flex items-center gap-1.5 hover:cursor-pointer bg-black text-white">
+                                <IoSearch className="w-5 h-5" />
+                            </button>
+                        </div>
+                        <button onClick={() => handleShowForm("create")} className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize hover:cursor-pointer bg-black text-white">
+                            create
                         </button>
                     </div>
-                    <button onClick={() => handleShowForm("create")} className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize hover:cursor-pointer bg-black text-white">
-                        create
-                    </button>
-                </div>
 
-                {/* Conditional rendering of the form */}
-                {showForm && renderForm()}
+                    {/* Conditional rendering of the form */}
+                    {showForm && renderForm()}
 
-                {/* User table */}
-                <div className="w-full h-[60vh] overflow-auto">
-                    <table className="w-full">
-                        <thead className="w-full sticky top-0 bg-black text-white z-10">
-                            <tr className="w-full">
-                                <td className="min-w-[80px] max-w-[80px] p-2 border border-gray-300 text-center">Kode</td>
-                                <td className="w-full p-2 border border-gray-300 text-start">Name</td>
-                                <td className="min-w-[100px] max-w-[100px] p-2 border border-gray-300 text-center">Role</td>
-                                <td className="w-fit p-2 border border-gray-300 text-center">Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>{renderTableRow()}</tbody>
-                    </table>
-                </div>
-                {/* Pagination buttons */}
-                <div className="w-full flex justify-start items-center">
-                    <div className="flex items-center gap-2.5">
-                        <button className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize bg-black text-white">1</button>
-                        <button className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize border border-gray-300">2</button>
+                    {/* User table */}
+                    <div className="w-full h-[60vh] overflow-auto">
+                        <table className="w-full">
+                            <thead className="w-full sticky top-0 bg-black text-white z-10">
+                                <tr className="w-full">
+                                    <td className="min-w-[80px] max-w-[80px] p-2 border border-gray-300 text-center">Kode</td>
+                                    <td className="w-full p-2 border border-gray-300 text-start">Name</td>
+                                    <td className="min-w-[100px] max-w-[100px] p-2 border border-gray-300 text-center">Role</td>
+                                    <td className="w-fit p-2 border border-gray-300 text-center">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>{renderTableRow()}</tbody>
+                        </table>
+                    </div>
+                    {/* Pagination buttons */}
+                    <div className="w-full flex justify-start items-center">
+                        <div className="flex items-center gap-2.5">
+                            <button className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize bg-black text-white">1</button>
+                            <button className="py-1.5 px-4 flex items-center gap-1.5 rounded-sm capitalize border border-gray-300">2</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Protected>
         </>
     );
 }
