@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { FaRegMessage, FaWallet, FaInbox, FaDiagramProject, FaBlogger, FaUsers, FaRegBell } from "react-icons/fa6";
@@ -53,13 +54,17 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
                         <span className="text-sm font-semibold">0</span>
                     </button>
                     {/* Avatar Button */}
-                    <button className="p-2 border border-gray-300 rounded-sm flex items-center gap-1.5 hover:cursor-pointer">
-                        <FaUser className="w-4 h-4" />
-                    </button>
+                    <Link href={"/dashboard/account"}>
+                        <button className="p-2 border border-gray-300 rounded-sm flex items-center gap-1.5 hover:cursor-pointer">
+                            <FaUser className="w-4 h-4" />
+                        </button>
+                    </Link>
                     {/* Mobile Logout Button */}
-                    <button className="md:hidden p-2 border border-gray-300 rounded-sm flex items-center gap-1.5 hover:cursor-pointer">
-                        <IoMdExit className="w-4 h-4" />
-                    </button>
+                    <Link href={"/login"}>
+                        <button className="md:hidden p-2 border border-gray-300 rounded-sm flex items-center gap-1.5 hover:cursor-pointer">
+                            <IoMdExit className="w-4 h-4" />
+                        </button>
+                    </Link>
                 </div>
             </nav>
 
@@ -75,10 +80,12 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
                         ))}
                     </div>
                     {/* Logout Button */}
-                    <button className="w-full flex items-center gap-4 p-1.5 py-2.5 rounded-sm hover:bg-rose-500 hover:text-white duration-200">
-                        <IoMdExit className="w-6 h-6" />
-                        <span className="text-sm font-semibold">Logout</span>
-                    </button>
+                    <Link href={"/login"}>
+                        <button className="w-full flex items-center gap-4 p-1.5 py-2.5 rounded-sm hover:bg-rose-500 hover:text-white duration-200">
+                            <IoMdExit className="w-6 h-6" />
+                            <span className="text-sm font-semibold">Logout</span>
+                        </button>
+                    </Link>
                 </aside>
                 {/* Main Content Area */}
                 <div className="h-[84vh] w-full p-2.5 flex flex-col gap-4">{children}</div>

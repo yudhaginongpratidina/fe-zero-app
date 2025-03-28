@@ -14,6 +14,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
     type: "text" | "email" | "password" | "number";
+    disabled?: boolean;
     icon?: JSX.Element;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,7 +25,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * - Icon support.
  * - Password visibility toggle for password fields.
  */
-export default function Input({ name, type, icon, value, onChange, ...props }: InputProps) {
+export default function Input({ name, type, disabled, icon, value, onChange, ...props }: InputProps) {
     // Reference to the input element for potential future use.
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,11 +58,12 @@ export default function Input({ name, type, icon, value, onChange, ...props }: I
                 <input
                     id={name}
                     name={name}
+                    disabled={disabled}
                     type={inputType}
                     value={value}
                     onChange={onChange}
                     ref={inputRef}
-                    className={`w-full p-2.5 ${icon ? "pl-10" : "pl-2.5"} border border-gray-300 focus:border-gray-400 outline-none rounded-sm duration-200`}
+                    className={`w-full p-2.5 ${icon ? "pl-10" : "pl-2.5"} ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white"} border border-gray-300 focus:border-gray-400 outline-none rounded-sm duration-200`}
                     {...props}
                 />
                 {/* Password visibility toggle button, only rendered for password fields */}
